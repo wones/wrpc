@@ -1,5 +1,5 @@
 参数:
-serializer.algorithm--设置序列化方式,不设置默认为0,其中 0:java 1:json 2:protobuf
+serializer.algorithm--设置序列化方式,不设置默认为0,其中 0:java原生 1:json 2:protobuf
 server.host--设置服务端host,不设置默认为127.0.0.1
 server.port--设置服务端port,不设置默认为8080
 messageType.request--设置请求消息类型,不设置默认为0
