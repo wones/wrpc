@@ -23,7 +23,7 @@ public class NettyServerInitializer extends ChannelInitializer<SocketChannel> {
         ChannelPipeline pipeline = socketChannel.pipeline();
         //消息格式 【长度】【消息体】,解决粘包问题
         pipeline.addLast(new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE,8,4,0,0));
-//        pipeline.addLast(new LoggingHandler());
+        pipeline.addLast(new LoggingHandler());
         pipeline.addLast(new MessageDecode());
         pipeline.addLast(new MessageEncode(Serializer.getSerializerByCode(Config.getSerializerAlgorithm())));
         pipeline.addLast(new NettyRPCServerHandler(serviceProvider));

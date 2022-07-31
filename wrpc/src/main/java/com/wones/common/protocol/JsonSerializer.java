@@ -33,26 +33,11 @@ public class JsonSerializer implements Serializer{
         switch (code){
             //0:请求消息 1：响应消息
             case 0:
-                RPCRequest request = JSON.parseObject(bytes,RPCRequest.class);
-                Object[] objects = new Object[request.getParams().length];
-                // 把json字串转化成对应的对象， fastjson可以读出基本数据类型，不用转化
-                for(int i = 0;i < objects.length; i++){
-                    Class<?> paramsType = request.getParamsTypes()[i];
-                    if(!paramsType.isAssignableFrom(request.getParams()[i].getClass())){
-                        objects[i] = JSONObject.toJavaObject( (JSONObject) request.getParams()[i],request.getParamsTypes()[i]);
-                    }else{
-                        objects[i] = request.getParams()[i];
-                    }
-                }
-                request.setParams(objects);
+                RPCRequest request = JSON.parseObject(bytes, RPCRequest.class);
                 obj = request;
                 break;
             case 1:
-                RPCResponse response = JSON.parseObject(bytes,RPCResponse.class);
-                Class<?> dataType = response.getDataType();
-                if(! dataType.isAssignableFrom(response.getData().getClass())){
-                    response.setData(JSONObject.toJavaObject((JSONObject) response.getData(),dataType));
-                }
+                RPCResponse response = JSON.parseObject(bytes, RPCResponse.class);
                 obj = response;
                 break;
             default:

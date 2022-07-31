@@ -13,6 +13,10 @@ public interface Serializer {
                 return new ObjectSerializer();
             case 1:
                 return new JsonSerializer();
+            case 2:
+                return new ProtobufSerializer();
+            case 3:
+                return new KryoSerializer();
             default:
                 return null;
         }

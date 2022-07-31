@@ -14,7 +14,7 @@ public class NettyClientInitializer extends ChannelInitializer<SocketChannel> {
     protected void initChannel(SocketChannel socketChannel) throws Exception {
         ChannelPipeline pipeline = socketChannel.pipeline();
         pipeline.addLast(new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE,8,4,0,0));
-//        pipeline.addLast(new LoggingHandler());
+        pipeline.addLast(new LoggingHandler());
         pipeline.addLast(new MessageDecode());
         pipeline.addLast(new MessageEncode(Serializer.getSerializerByCode(Config.getSerializerAlgorithm())));
         pipeline.addLast(new NettyClientHandler());
